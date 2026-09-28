@@ -139,9 +139,10 @@ SELECT
     YEAR(
         TO_DATE(transaction_date, 'M/D/YYYY')
     ) AS transaction_year,
-    MONTH(
-        TO_DATE(transaction_date, 'M/D/YYYY')
-    ) AS transaction_month,
+    DATE_FORMAT(
+    TO_DATE(transaction_date, 'M/D/YYYY'),
+    'MMM'
+) AS transaction_month,
     DATE_FORMAT(
         TO_DATE(transaction_date, 'M/D/YYYY'),
         'MMMM' ----Full month
@@ -175,8 +176,8 @@ WITH cleaned_coffee_sales AS (
     ) AS transaction_date,
 ---DATE INFORMATION
 YEAR ( TO_DATE (transaction_date,'M/D/YYYY')) AS transaction_year,
-MONTH (TO_DATE(transaction_date, 'M/D/YYYY')) AS transaction_month,
-DATE_FORMAT (TO_DATE(transaction_date, 'M/D/YYYY'), 'EEE') AS day_name,
+DATE_FORMAT(TO_DATE(transaction_date, 'M/D/YYYY'), 'MMM') AS transaction_month,
+DATE_FORMAT(TO_DATE(transaction_date, 'M/D/YYYY'), 'EEE') AS day_name,
 
 --TIME INFORMATION
 HOUR(transaction_time) AS transaction_hour,
